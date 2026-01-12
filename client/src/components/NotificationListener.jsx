@@ -12,8 +12,6 @@ const NotificationListener = () => {
             socket.emit('join_user', userInfo._id);
 
             socket.on('notification', (data) => {
-                // Simple alert for now - user requested "instant notification"
-                // In a real app we'd use a toast library like react-hot-toast
                 alert(`🔔 Notification: ${data.message}`);
             });
 
