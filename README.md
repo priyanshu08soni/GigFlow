@@ -26,7 +26,7 @@ GigFlow is a full-stack MERN application connecting clients with freelancers. It
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/gigflow.git
+git clone https://github.com/priyanshu08soni/GigFlow.git
 cd gigflow
 ```
 
