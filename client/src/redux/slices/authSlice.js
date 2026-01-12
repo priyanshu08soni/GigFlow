@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import baseURL from '../../utils/axiosConfig';
+
 const initialState = {
     userInfo: localStorage.getItem('userInfo')
         ? JSON.parse(localStorage.getItem('userInfo'))
@@ -9,7 +9,7 @@ const initialState = {
     error: null,
 };
 
-const API_URL = `${baseURL}/api/auth`;
+const API_URL = 'https://gigflow-r4bw.onrender.com/api/auth';
 
 export const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue }) => {
     try {

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { io } from 'socket.io-client';
-import baseURL from '../utils/axiosConfig';
+
 const NotificationListener = () => {
     const { userInfo } = useSelector((state) => state.auth);
 
     useEffect(() => {
         if (userInfo) {
-            const socket = io(baseURL);
+            const socket = io('https://gigflow-r4bw.onrender.com');
 
             socket.emit('join_user', userInfo._id);
 
