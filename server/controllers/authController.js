@@ -8,8 +8,8 @@ const generateToken = (res, userId) => {
 
     res.cookie('jwt', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV !== 'development',
-        sameSite: 'strict',
+        secure: true,
+        sameSite: 'none',
         maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
     });
 };
@@ -69,6 +69,8 @@ export const loginUser = async (req, res) => {
 export const logoutUser = (req, res) => {
     res.cookie('jwt', '', {
         httpOnly: true,
+        secure: true,
+        sameSite: 'none',
         expires: new Date(0),
     });
     res.status(200).json({ message: 'Logged out successfully' });
