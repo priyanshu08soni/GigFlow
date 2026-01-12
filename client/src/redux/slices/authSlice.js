@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import baseURL from '../../utils/axiosConfig';
+
 const initialState = {
     userInfo: localStorage.getItem('userInfo')
         ? JSON.parse(localStorage.getItem('userInfo'))
@@ -8,6 +8,8 @@ const initialState = {
     loading: false,
     error: null,
 };
+
+const API_URL = 'https://gigflow-r4bw.onrender.com/api/auth';
 
 export const login = createAsyncThunk('auth/login', async (userData, { rejectWithValue }) => {
     try {
@@ -17,7 +19,7 @@ export const login = createAsyncThunk('auth/login', async (userData, { rejectWit
             },
             withCredentials: true,
         };
-        const { data } = await axios.post(`${baseURL}/login`, userData, config);
+        const { data } = await axios.post(`${API_URL}/login`, userData, config);
         localStorage.setItem('userInfo', JSON.stringify(data));
         return data;
     } catch (error) {
@@ -33,7 +35,7 @@ export const register = createAsyncThunk('auth/register', async (userData, { rej
             },
             withCredentials: true,
         };
-        const { data } = await axios.post(`${baseURL}/register`, userData, config);
+        const { data } = await axios.post(`${API_URL}/register`, userData, config);
         localStorage.setItem('userInfo', JSON.stringify(data));
         return data;
     } catch (error) {
@@ -43,7 +45,7 @@ export const register = createAsyncThunk('auth/register', async (userData, { rej
 
 export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
     try {
-        await axios.post(`${baseURL}/logout`, {}, { withCredentials: true });
+        await axios.post(`${API_URL}/logout`, {}, { withCredentials: true });
         localStorage.removeItem('userInfo');
     } catch (error) {
         return rejectWithValue(error.response.data.message || error.message);
